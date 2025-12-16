@@ -2,15 +2,18 @@
 
 const mains = document.getElementsByTagName("main");
 const mainEl = mains[0]
-console.log(`This is my mainEl: ${mainEl}`)
 
 const root = document.documentElement; 
-const styles = window.getComputedStyle(root);
-const color = styles.getPropertyValue('--main-bg')
+const CSSstyles = window.getComputedStyle(root);
 
-
-mainEl.style.backgroundColor = color
+mainEl.style.backgroundColor = CSSstyles.getPropertyValue('--main-bg')
 let h1 = document.createElement('h1')
 h1.textContent = "DOM Manipulation"
 mainEl.append(h1)
 mainEl.classList.add("flex-ctr")
+
+const topMenuEl = document.getElementById("top-menu")
+topMenuEl.style.height = "100%"
+topMenuEl.style.backgroundColor = CSSstyles.getPropertyValue('--top-menu-bg')
+topMenuEl.classList.add("flex-around")
+
