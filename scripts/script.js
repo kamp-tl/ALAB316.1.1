@@ -1,5 +1,12 @@
 //import '../styles/style.css'
 
+const menuLinks = [
+    { text: 'about', href: '/about' },
+    { text: 'catalog', href: '/catalog' },
+    { text: 'orders', href: '/orders' },
+    { text: 'account', href: '/account' },
+  ];
+
 const mains = document.getElementsByTagName("main");
 const mainEl = mains[0]
 
@@ -16,4 +23,11 @@ const topMenuEl = document.getElementById("top-menu")
 topMenuEl.style.height = "100%"
 topMenuEl.style.backgroundColor = CSSstyles.getPropertyValue('--top-menu-bg')
 topMenuEl.classList.add("flex-around")
+
+for (let link of menuLinks){
+    let a = document.createElement('a')
+    a.setAttribute('href',link.href)
+    a.textContent = link.text
+    topMenuEl.append(a)
+}
 
