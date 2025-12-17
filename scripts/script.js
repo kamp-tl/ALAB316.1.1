@@ -19,15 +19,12 @@ const menuLinks = [
 ];
 
 
-//const mainEl = document.querySelector('main')  
-const mains = document.getElementsByTagName("main");
-const mainEl = mains[0]
+const mainEl = document.querySelector('main')  
 const root = document.documentElement; 
-const CSSstyles = window.getComputedStyle(root);
 
 
-mainEl.style.backgroundColor = CSSstyles.getPropertyValue('--main-bg')
-// mainEl.style.backgroundColor = 'var(--main-bg)'
+
+mainEl.style.backgroundColor = 'var(--main-bg)'
 let h1 = document.createElement('h1')
 h1.textContent = "DOM Manipulation"
 mainEl.append(h1)
@@ -35,8 +32,8 @@ mainEl.classList.add("flex-ctr")
 
 const topMenuEl = document.getElementById("top-menu")
 topMenuEl.style.height = "100%"
-topMenuEl.style.backgroundColor = CSSstyles.getPropertyValue('--top-menu-bg')
-// topMenuEl.style.backgroundColor = 'var(--top-menu-bg)'
+
+topMenuEl.style.backgroundColor = 'var(--top-menu-bg)'
 topMenuEl.classList.add("flex-around")
 
 for (let link of menuLinks){
@@ -54,16 +51,29 @@ subMenuEl.classList.add('flex-around')
 subMenuEl.style.position = 'absolute'
 subMenuEl.style.top = 0
 
-//interation 
+//interaction 
 const topMenuLinks = topMenuEl.querySelectorAll('a')
 topMenuEl.addEventListener('click', (e) =>{
 e.preventDefault()
 console.log(e.target.textContent)
+
+if(!e.target.classList.contains('active')){
+  console.log('inactive')
+  // loop through the menuLinks to check for subLinks 
+  // if(){ 
+  //   subMenuEl.style.top = '100%'
+  // }
+  // else {
+  //   subMenuEl.style.top = '0'
+  // }
+}
 
 for(let a of topMenuLinks){
   a.classList.remove('active')
   if (a===e.target){continue}
 }
 e.target.classList.toggle('active')
+
+
 })
 
