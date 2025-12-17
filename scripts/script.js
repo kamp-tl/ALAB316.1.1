@@ -11,9 +11,9 @@ const menuLinks = [
 //const mainEl = document.querySelector('main')  
 const mains = document.getElementsByTagName("main");
 const mainEl = mains[0]
-
 const root = document.documentElement; 
 const CSSstyles = window.getComputedStyle(root);
+
 
 mainEl.style.backgroundColor = CSSstyles.getPropertyValue('--main-bg')
 // mainEl.style.backgroundColor = 'var(--main-bg)'
@@ -35,3 +35,10 @@ for (let link of menuLinks){
     topMenuEl.append(a)
 }
 
+// submenu
+const subMenuEl = document.getElementById("sub-menu")
+subMenuEl.style.height = '100%'
+subMenuEl.style.backgroundColor = 'var(--sub-menu-bg)'
+subMenuEl.classList.add('flex-around')
+subMenuEl.style.position = absolute
+subMenuEl.style.top = 0
