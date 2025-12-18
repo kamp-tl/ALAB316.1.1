@@ -52,28 +52,41 @@ subMenuEl.style.position = 'absolute'
 subMenuEl.style.top = 0
 
 //interaction 
-const topMenuLinks = topMenuEl.querySelectorAll('a')
-topMenuEl.addEventListener('click', (e) =>{
-e.preventDefault()
-console.log(e.target.textContent)
+const topMenuLinks = topMenuEl.querySelectorAll('a') //the link elements 
+topMenuEl.addEventListener('click', (e) =>{ 
+  if(e.target.tagName !== 'A' ){return}
+  e.preventDefault() //prevents the link
+  console.log(e.target.textContent) 
+//connect the e.target element to the respective object in menuLinks
+  let objlink = menuLinks.find(obj => obj.text === e.target.textContent)
+  if(!e.target.classList.contains('active')){ //toggle active 
+    console.log('inactive')
+      if (objlink.hasOwnProperty("subLinks")){
+        subMenuEl.style.top = '100%'
+        e.target.classList.add('active')
+      }
+      else {
+        subMenuEl.style.top = 0
+      }
+  }
+  else {
+    console.log('active')
+    subMenuEl.style.top = 0
+    e.target.classList.remove('active')
+  }
 
-if(!e.target.classList.contains('active')){
-  console.log('inactive')
-  // loop through the menuLinks to check for subLinks 
-  // if(){ 
-  //   subMenuEl.style.top = '100%'
-  // }
-  // else {
-  //   subMenuEl.style.top = '0'
-  // }
-}
-
-for(let a of topMenuLinks){
-  a.classList.remove('active')
-  if (a===e.target){continue}
-}
-e.target.classList.toggle('active')
+  for(let a of topMenuLinks){
+    a.classList.remove('active') //anytime a link is clicked remove active unless it is the target of the evt
+    
+    if (a===e.target && e.target.classList.contains('active')){
+      a.classList.remove('active')
+    }
+    else if (a===e.target && !e.target.classList.contains('active')){
+      console.log('')
+       continue}
+  }
+  e.target.classList.toggle('active')
 
 
-})
+  })
 
